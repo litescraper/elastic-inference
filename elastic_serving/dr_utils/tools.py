@@ -70,7 +70,7 @@ class BrowserSession:
             return "Error: SERPER_API_KEY not set."
         try:
             resp = await self.http_client.post(
-                "https://google.serper.dev/search",
+                f'{os.getenv("SERPER_BASE_URL", "https://google.serper.dev").rstrip("/")}/search',
                 json={"q": query, "num": topn},
                 headers={
                     "X-API-KEY": api_key,
